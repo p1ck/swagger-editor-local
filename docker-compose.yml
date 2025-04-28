@@ -1,0 +1,17 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "127.0.0.1:80:80" # only listen on localhost
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Mount the Nginx config file
+    restart: always
+
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: swagger_editor
+    ports:
+      - "127.0.0.1:8080:8080" # only listen on localhost
+    platform: linux/amd64 # Specify the platform since this only comes in amd64 flavor
+    restart: always
